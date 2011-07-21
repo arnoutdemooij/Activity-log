@@ -1,0 +1,21 @@
+<h1>Listing users</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @users.each do |user| %>
+  <tr>
+    <td><%= (user.id == current_user.id) ? '*' : ''  %></td>
+    <td><%= user.name %></td>
+    <td><%= link_to 'Show', user %></td>
+    <td><%= if user.id != current_user.id and !current_user.friends.include?(user) then link_to "Add Friend", friendships_path(:friend_id => user), :method => :post end %></td>
+  </tr>
+<% end %>
+</table>
+
